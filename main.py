@@ -130,7 +130,7 @@ def get_data_fetch_agent_prompt(restaurant_query: str) -> str:
 # Do not modify the signature of the "main" function.
 def main(user_query: str):
     restaurant_review_agent = ConversableAgent("Restaurant Review agent", system_message=ENTRYPOINT_AGENT_PROMPT, 
-        llm_config={"config_list": [{"model": "gpt-4", "temperature": 0.9, "api_key": os.environ.get("OPENAI_API_KEY")}]},
+        llm_config={"config_list": [{"model": "gpt-4o-mini", "temperature": 0.9, "api_key": os.environ.get("OPENAI_API_KEY")}]},
         human_input_mode="NEVER",)  # Never ask for human input.
 
 
@@ -151,7 +151,7 @@ def main(user_query: str):
     user_proxy.register_for_execution(name="fetch_restaurant_reviews")(fetch_restaurant_data)
 
     review_analysis_agent = ConversableAgent("Review Analysis agent", system_message=REVIEWANALYSIS_AGENT_PROMPT, 
-            llm_config={"config_list": [{"model": "gpt-4", "temperature": 0.9, "api_key": os.environ.get("OPENAI_API_KEY")}]},
+            llm_config={"config_list": [{"model": "gpt-4o-mini", "temperature": 0.9, "api_key": os.environ.get("OPENAI_API_KEY")}]},
             human_input_mode="NEVER",)  # Never ask for human input.
 
     chat_result = user_proxy.initiate_chats([
